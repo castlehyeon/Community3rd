@@ -17,25 +17,28 @@ public class Container {
     private static final HomeController homeController;
 
     static {
-        try {
-            articleController = (ArticleController) Class.forName("com.ll.exam.article.controller.ArticleController").newInstance();
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            homeController = (HomeController) Class.forName("com.ll.exam.home.controller.HomeController").newInstance();
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        ;
+//        try {
+//            articleController = (ArticleController) Class.forName("com.ll.exam.article.controller.ArticleController").newInstance();
+//        } catch (InstantiationException e) {
+//            throw new RuntimeException(e);
+//        } catch (IllegalAccessException e) {
+//            throw new RuntimeException(e);
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//        try {
+//            homeController = (HomeController) Class.forName("com.ll.exam.home.controller.HomeController").newInstance();
+//        } catch (InstantiationException e) {
+//            throw new RuntimeException(e);
+//        } catch (IllegalAccessException e) {
+//            throw new RuntimeException(e);
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+        articleController = Ut.cls.newObj(ArticleController.class, null);
+        homeController = Ut.cls.newObj(HomeController.class, null);
+//        articleController = (ArticleController) Ut.cls.newObj(ArticleController.class, null);
+//        homeController = (HomeController) Ut.cls.newObj(HomeController.class, null);
     }
 
     public static ArticleController getArticleController() {
