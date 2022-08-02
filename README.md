@@ -23,3 +23,6 @@ com.ll.chat(채팅방, 채팅)
 1. Container에서 모든 것을 받아올 수 있다.
 2. DispatchServlet의 간소화
 3. Controller내부에서 어노테이션 정의 (public @interface Controller )
+4. 컴포넌트 어노테이션 스캔 구현
+5. without new
+6. Container안에 objects에 모든 객체를 담을 것.( 객체 선언, 생성) -> 다운캐스팅의 문제를 지네릭으로 해결.
