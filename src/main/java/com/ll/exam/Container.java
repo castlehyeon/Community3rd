@@ -22,8 +22,8 @@ public class Container {
 //        homeController = Ut.cls.newObj(HomeController.class, null);
 //        articleController = (ArticleController) Ut.cls.newObj(ArticleController.class, null);
 //        homeController = (HomeController) Ut.cls.newObj(HomeController.class, null);
-    public static Object getObj(Class cls) {
-        return objects.get(cls);
+    public static <T> T getObj(Class<T> cls) {
+        return (T)objects.get(cls);
 }
 
 //    public static ArticleController getArticleController() {

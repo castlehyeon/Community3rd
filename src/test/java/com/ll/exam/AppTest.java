@@ -20,7 +20,7 @@ public class AppTest {
 
     @Test
     public void ioc__articleController() {
-        ArticleController articleController = (ArticleController) Container.getObj(ArticleController.class);
+        ArticleController articleController = Container.getObj(ArticleController.class);
 //        ArticleController articleController = Container.getArticleController();
         assertThat(articleController).isNotNull();
     }
@@ -28,8 +28,8 @@ public class AppTest {
     public void ioc__articleContainer__싱글톤(){
 //        ArticleController articleController1 = Container.getArticleController();
 //        ArticleController articleController2 = Container.getArticleController();
-        ArticleController articleController1 = (ArticleController) Container.getObj(ArticleController.class);
-        ArticleController articleController2 = (ArticleController) Container.getObj(ArticleController.class);
+        ArticleController articleController1 =  Container.getObj(ArticleController.class);
+        ArticleController articleController2 =  Container.getObj(ArticleController.class);
 
         assertThat(articleController2).isEqualTo(articleController1);
     }
@@ -44,7 +44,7 @@ public class AppTest {
     @Test
     public void ioc__homeController() {
         //HomeController homeController = Container.getHomeController();
-        HomeController homeController = (HomeController) Container.getObj(HomeController.class);
+        HomeController homeController = Container.getObj(HomeController.class);
 
         assertThat(homeController).isNotNull();
     }
