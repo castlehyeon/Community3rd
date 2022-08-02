@@ -2,13 +2,11 @@ package com.ll.exam;
 
 import com.ll.exam.article.annotation.Autowired;
 import com.ll.exam.article.annotation.Controller;
+import com.ll.exam.article.annotation.Repository;
 import com.ll.exam.article.annotation.Service;
-import com.ll.exam.article.controller.ArticleController;
-import com.ll.exam.article.service.ArticleService;
-import com.ll.exam.home.controller.HomeController;
+import com.ll.exam.article.repository.ArticleRepository;
 import org.reflections.Reflections;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -23,11 +21,19 @@ public class Container {
 
     private static void scanComponents() {
         //전체 레고 생성
+        scanRepositories();
         scanServices();
         scanControllers();
 
         //조립
         resolveDependenciesAllComponents();
+    }
+
+    private static void scanRepositories() {
+        Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
+        for (Class<?> cls : ref.getTypesAnnotatedWith(Repository.class)) {
+            objects.put(cls, Ut.cls.newObj(cls, null));
+        }
     }
 
     private static void resolveDependenciesAllComponents() {
@@ -65,7 +71,7 @@ public class Container {
 //        objects.put(HomeController.class, new HomeController());
 
         //위의 방법 대신, Reflection 라이브러리를 쓰면 new를 쓰지 않아도 된다.
-        Reflections ref = new Reflections("com.ll.exam");
+        Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
         for (Class<?> cls : ref.getTypesAnnotatedWith(Service.class)) {
             objects.put(cls, Ut.cls.newObj(cls, null));
         }
@@ -74,7 +80,7 @@ public class Container {
     private static void scanControllers(){
 //        objects.put(ArticleController.class, new ArticleController());
 //        objects.put(HomeController.class, new HomeController());
-        Reflections ref = new Reflections("com.ll.exam");
+        Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
         for (Class<?> cls : ref.getTypesAnnotatedWith(Controller.class)) {
             objects.put(cls, Ut.cls.newObj(cls, null));
         }
