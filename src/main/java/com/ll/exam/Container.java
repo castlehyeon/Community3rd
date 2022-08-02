@@ -2,12 +2,11 @@ package com.ll.exam;
 
 import com.ll.exam.article.annotation.Controller;
 import com.ll.exam.article.controller.ArticleController;
+import com.ll.exam.article.service.ArticleService;
 import com.ll.exam.home.controller.HomeController;
 import org.reflections.Reflections;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.*;
 
 public class Container {
@@ -15,13 +14,29 @@ public class Container {
 
     static {
         objects = new HashMap<>();
-//        objects.put(ArticleController.class, new ArticleController());
-//        objects.put(HomeController.class, new HomeController());
+        scanServices();
+        scanControllers();
+
+    }
+
+    private static void scanServices() {
+        objects.put(ArticleService.class, new ArticleService());
+        objects.put(HomeController.class, new HomeController());
         Reflections ref = new Reflections("com.ll.exam");
         for (Class<?> cls : ref.getTypesAnnotatedWith(Controller.class)) {
             objects.put(cls, Ut.cls.newObj(cls, null));
         }
     }
+
+    private static void scanControllers(){
+                objects.put(ArticleController.class, new ArticleController());
+        objects.put(HomeController.class, new HomeController());
+        Reflections ref = new Reflections("com.ll.exam");
+        for (Class<?> cls : ref.getTypesAnnotatedWith(Controller.class)) {
+            objects.put(cls, Ut.cls.newObj(cls, null));
+        }
+    }
+
 //        articleController = Ut.cls.newObj(ArticleController.class, null);
 //        homeController = Ut.cls.newObj(HomeController.class, null);
 //        articleController = (ArticleController) Ut.cls.newObj(ArticleController.class, null);
