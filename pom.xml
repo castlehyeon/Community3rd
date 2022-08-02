@@ -55,6 +55,13 @@
             <version>2.13.3</version>
         </dependency>
 
+        <!-- reflection -->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.11</version>
+        </dependency>
+
     </dependencies>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
