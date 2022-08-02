@@ -48,6 +48,8 @@ public class Container {
                 .forEach(field -> {
                     Class cls = field.getType();
                     Object dependency = objects.get(cls);
+
+                    //이 구문을 넣지 않는다면 객체가 null값이 나온다.
                     try {
                         field.set(o, dependency);
                         // o.fieldName = dependency
