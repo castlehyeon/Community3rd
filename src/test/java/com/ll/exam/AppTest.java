@@ -52,8 +52,8 @@ public class AppTest {
 
     @Test
     public void ioc__homeController__싱글톤() {
-        HomeController homeController1 = (HomeController) Container.getObj(HomeController.class);
-        HomeController homeController2 = (HomeController) Container.getObj(HomeController.class);
+        HomeController homeController1 = Container.getObj(HomeController.class);
+        HomeController homeController2 = Container.getObj(HomeController.class);
 //        HomeController homeController1 = Container.getHomeController();
 //        HomeController homeController2 = Container.getHomeController();
 
@@ -72,5 +72,16 @@ public class AppTest {
         ArticleService articleService2 = Container.getObj(ArticleService.class);
 
         assertThat(articleService2).isEqualTo(articleService1);
+    }
+
+    @Test
+    public void articleController가_생성될_때_articleService도_같이_생성() {
+        ArticleController articleController = Container.getObj(ArticleController.class);
+
+
+        ArticleService articleService = articleController.getArticleServiceForTest();
+
+
+        assertThat(articleService).isNotNull();
     }
 }
