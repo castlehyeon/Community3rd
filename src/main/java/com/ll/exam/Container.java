@@ -8,45 +8,30 @@ import org.reflections.Reflections;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Container {
-    private static final ArticleController articleController;
-    private static final HomeController homeController;
+    private static Map<Class, Object> objects;
 
     static {
-//        try {
-//            articleController = (ArticleController) Class.forName("com.ll.exam.article.controller.ArticleController").newInstance();
-//        } catch (InstantiationException e) {
-//            throw new RuntimeException(e);
-//        } catch (IllegalAccessException e) {
-//            throw new RuntimeException(e);
-//        } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//        try {
-//            homeController = (HomeController) Class.forName("com.ll.exam.home.controller.HomeController").newInstance();
-//        } catch (InstantiationException e) {
-//            throw new RuntimeException(e);
-//        } catch (IllegalAccessException e) {
-//            throw new RuntimeException(e);
-//        } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-        articleController = Ut.cls.newObj(ArticleController.class, null);
-        homeController = Ut.cls.newObj(HomeController.class, null);
+        objects = new HashMap<>();
+        objects.put(ArticleController.class, new ArticleController());
+        objects.put(HomeController.class, new HomeController());
+    }
+//        articleController = Ut.cls.newObj(ArticleController.class, null);
+//        homeController = Ut.cls.newObj(HomeController.class, null);
 //        articleController = (ArticleController) Ut.cls.newObj(ArticleController.class, null);
 //        homeController = (HomeController) Ut.cls.newObj(HomeController.class, null);
-    }
+    public static Object getObj(Class cls) {
+        return objects.get(cls);
+}
 
-    public static ArticleController getArticleController() {
-        return articleController;
-    }
-    public static HomeController getHomeController() {
-        return homeController;
-    }
+//    public static ArticleController getArticleController() {
+//        return articleController;
+//    }
+//    public static HomeController getHomeController() {
+//        return homeController;
+//    }
     public static List<String> getControllerNames() throws InvocationTargetException, IllegalAccessException {
 //        return List.of("home", "article");
 //        Reflections reflections = new Reflections("com.ll.exam");
