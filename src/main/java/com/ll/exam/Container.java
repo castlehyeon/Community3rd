@@ -15,8 +15,12 @@ public class Container {
 
     static {
         objects = new HashMap<>();
-        objects.put(ArticleController.class, new ArticleController());
-        objects.put(HomeController.class, new HomeController());
+//        objects.put(ArticleController.class, new ArticleController());
+//        objects.put(HomeController.class, new HomeController());
+        Reflections ref = new Reflections("com.ll.exam");
+        for (Class<?> cls : ref.getTypesAnnotatedWith(Controller.class)) {
+            objects.put(cls, Ut.cls.newObj(cls, null));
+        }
     }
 //        articleController = Ut.cls.newObj(ArticleController.class, null);
 //        homeController = Ut.cls.newObj(HomeController.class, null);
