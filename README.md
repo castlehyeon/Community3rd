@@ -22,7 +22,7 @@ com.ll.chat(채팅방, 채팅)
 
 ## 전 프로젝트와 다른 점
 1. Container에서 모든 것을 받아올 수 있다.
-2. DispatchServlet의 간소화
+2. DispatchServlet의 간소화 -> ControllerManager에서 맵핑, ArticleController에서 동작처리
 3. Controller내부에서 어노테이션 정의 (public @interface Controller )
 4. 컴포넌트 어노테이션 스캔 구현
 5. without new
