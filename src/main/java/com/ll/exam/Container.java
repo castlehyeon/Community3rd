@@ -4,7 +4,7 @@ import com.ll.exam.article.annotation.Autowired;
 import com.ll.exam.article.annotation.Controller;
 import com.ll.exam.article.annotation.Repository;
 import com.ll.exam.article.annotation.Service;
-import com.ll.exam.article.repository.ArticleRepository;
+import com.ll.exam.utill.Ut;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;

@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 @Target(ElementType.METHOD) // 이 어노테이션은 메서드에 붙는거다.
 @Retention(RetentionPolicy.RUNTIME) // ??
-public @interface Getmapping {
+public @interface GetMapping {
 
         String value(); // 어노테이션 달때, value(String) 입력가능하게 함
 }
