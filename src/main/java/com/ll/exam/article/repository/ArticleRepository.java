@@ -4,4 +4,5 @@ import com.ll.exam.article.annotation.Repository;
 
 @Repository
 public class ArticleRepository {
+
 }
